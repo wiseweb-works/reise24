@@ -1,8 +1,9 @@
 import { type ActionFunctionArgs, data } from "react-router";
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { parseMarkdownToJson } from "~/lib/utils";
+import { parseMarkdownToJson, parseTripData } from "~/lib/utils";
 import { appwriteConfig, database } from "~/appwrite/client";
 import { ID } from "appwrite";
+import { createProduct } from "~/lib/stripe";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const {
@@ -28,7 +29,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         {
         "name": "A descriptive title for the trip",
         "description": "A brief description of the trip and its highlights not exceeding 100 words",
-        "estimatedPrice": "Lowest average price for the trip in EUR, e.g.price €",
+        "estimatedPrice": "Lowest average price for the trip in EUR, e.g.€price",
         "duration": ${numberOfDays},
         "budget": "${budget}",
         "travelStyle": "${travelStyle}",
@@ -89,6 +90,25 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         createdAt: new Date().toISOString(),
         imageUrls,
         userId,
+      }
+    );
+
+    const tripDetail = parseTripData(result.tripDetails) as Trip;
+    const tripPrice = parseInt(tripDetail.estimatedPrice.replace("€", ""), 10);
+    const paymentLink = await createProduct(
+      tripDetail.name,
+      tripDetail.description,
+      imageUrls,
+      tripPrice,
+      result.$id
+    );
+
+    await database.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.tripCollectionId,
+      result.$id,
+      {
+        payment_link: paymentLink.url,
       }
     );
 

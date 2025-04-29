@@ -1,3 +1,4 @@
+import { Header } from "components";
 import { ComboBoxComponent } from "@syncfusion/ej2-react-dropdowns";
 import type { Route } from "./+types/create-trip";
 import { comboBoxItems, selectItems } from "~/constants";
@@ -7,12 +8,11 @@ import {
   LayersDirective,
   MapsComponent,
 } from "@syncfusion/ej2-react-maps";
-import { useState } from "react";
+import React, { useState } from "react";
 import { world_map } from "~/constants/world_map";
 import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
 import { account } from "~/appwrite/client";
 import { useNavigate } from "react-router";
-import { Header } from "components";
 
 export const loader = async () => {
   const response = await fetch("https://restcountries.com/v3.1/all");
