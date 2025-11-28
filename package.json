@@ -12,13 +12,13 @@
     "@google/generative-ai": "^0.24.1",
     "@react-router/node": "^7.9.6",
     "@react-router/serve": "^7.9.6",
-    "@sentry/profiling-node": "^10.26.0",
-    "@sentry/react-router": "^10.26.0",
+    "@sentry/profiling-node": "^10.27.0",
+    "@sentry/react-router": "^10.27.0",
     "@syncfusion/ej2-base": "^31.2.12",
     "@syncfusion/ej2-react-buttons": "^31.2.12",
-    "@syncfusion/ej2-react-charts": "^31.2.12",
-    "@syncfusion/ej2-react-dropdowns": "^31.2.12",
-    "@syncfusion/ej2-react-grids": "^31.2.12",
+    "@syncfusion/ej2-react-charts": "^31.2.15",
+    "@syncfusion/ej2-react-dropdowns": "^31.2.15",
+    "@syncfusion/ej2-react-grids": "^31.2.15",
     "@syncfusion/ej2-react-maps": "^31.2.12",
     "@syncfusion/ej2-react-navigations": "^31.2.12",
     "@syncfusion/ej2-react-splitbuttons": "^31.2.12",
@@ -34,19 +34,16 @@
     "stripe": "^20.0.0",
     "tailwind-merge": "^3.4.0"
   },
-  "resolutions": {
-    "glob": "^11.1.0"
-  },
   "devDependencies": {
     "@react-router/dev": "^7.9.6",
     "@tailwindcss/vite": "^4.1.17",
     "@types/node": "^24.10.1",
-    "@types/react": "^19.2.6",
+    "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "react-router-devtools": "^6.0.0",
     "tailwindcss": "^4.1.17",
     "typescript": "^5.9.3",
-    "vite": "^7.2.2",
+    "vite": "^7.2.4",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }
